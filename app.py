@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
-from flasgger import Swagger
+from flasgger import Swagger ## documentation
 
 import book_review
 
@@ -35,8 +35,9 @@ class UppercaseText(Resource):
         """
         text = request.args.get('text')
 
-        return jsonify({"text": text.upper()})
+        return {"text": text.upper(), "status_code": 200}
     
+  
 class Records(Resource):
     def get(self):
         """
@@ -131,7 +132,7 @@ class AddRecord(Resource):
 
 api.add_resource(AddRecord, "/add-record")
 api.add_resource(Records, "/records")
-api.add_resource(UppercaseText, "/uppercase")
+api.add_resource(UppercaseText, '/uppercase')
 
 if __name__ == "__main__":
     app.run(debug=True)
